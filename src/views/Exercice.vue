@@ -66,7 +66,6 @@ export default {
     stop () {
       this.end = Date.now()
       this.timer = this.end - this.start
-      console.log(this.timer)
     },
     convert (timer) {
       return (timer / 1000).toFixed(2) + ' s'
