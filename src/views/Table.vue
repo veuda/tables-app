@@ -32,15 +32,15 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  height: calc(100vh - 200px);
+  height: calc(100vh - 160px);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
 }
 .start {
-  height: 200px;
-  line-height: 200px;
+  height: 160px;
+  line-height: 160px;
   background-color: #fff;
   a {
     text-decoration: none;
@@ -52,6 +52,7 @@ export default {
     background: rgb(94, 194, 119);
     color: #fff;
     padding: .5rem 1rem;
+      cursor: pointer;
   }
 }
 </style>

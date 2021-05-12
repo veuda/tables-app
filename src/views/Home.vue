@@ -12,7 +12,8 @@
     </div>
     <div class="start">
       <router-link :to="`/table/${this.number}`">
-        <a class="button">COMMENCER</a>
+        <button class="button" v-if="this.number !== 0">COMMENCER</button>
+        <button class="button-disabled" v-else disabled>COMMENCER</button>
       </router-link>
     </div>
   </div>
@@ -39,15 +40,15 @@ export default {
 <style lang="scss" scoped>
 .home {
   .title {
-    height: 100px;
-    line-height: 100px;
+    height: 160px;
+    line-height: 160px;
     font-size: 2rem;
   }
   .tables {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 300px);
+    height: calc(100vh - 320px);
     .grid {
       display: grid;
       grid-template-columns: 70px 70px 70px;
@@ -67,8 +68,8 @@ export default {
     }
   }
   .start {
-    height: 200px;
-    line-height: 200px;
+    height: 160px;
+    line-height: 160px;
     background-color: #fff;
     a {
       text-decoration: none;
@@ -80,6 +81,16 @@ export default {
       background: rgb(94, 194, 119);
       color: #fff;
       padding: .5rem 1rem;
+      cursor: pointer;
+    }
+    .button-disabled {
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 1.5rem;
+      background: rgb(165, 207, 175);
+      color: #fff;
+      padding: .5rem 1rem;
+      cursor: default;
     }
   }
 }

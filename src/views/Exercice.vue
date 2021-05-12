@@ -1,15 +1,18 @@
 <template>
   <div class="about">
     <div class="display">
-      {{ this.number }} x {{ this.$route.params.id }} = {{ this.chiffre }}
+      <div>
+        {{ this.number }} x {{ this.$route.params.id }} = {{ this.chiffre }}
+      </div>
+      <div class="timer" :class="[ timer !== null ? 'is-visible' : '']">
+        Temps : {{ convert(this.timer) }}
+      </div>
     </div>
-    <div class="timer" :class="[ timer !== null ? 'is-visible' : '']">
-      Temps : {{ convert(this.timer) }}
-    </div>
+
     <div class="keyboard">
       <div>
         <div class="grid">
-          <span class="number" :class="{ 'is-active' : isActive === num }" v-for="num in numbers" :key="num" @click="choseNumber(num)">{{ num }}</span>
+          <span class="number" v-for="num in numbers" :key="num" @click="choseNumber(num)">{{ num }}</span>
           <span></span>
           <span class="number" @click="choseNumber(0)">0</span>
           <span class="number" @click="deleteNumber">R</span>
@@ -38,8 +41,7 @@ export default {
       chiffre: '',
       start: null,
       end: null,
-      timer: null,
-      isActive: null
+      timer: null
     }
   },
   methods: {
@@ -55,9 +57,6 @@ export default {
     choseNumber (number) {
       this.isActive = number
       this.chiffre = this.chiffre + number.toString()
-      setTimeout(() => {
-        this.isActive = null
-      }, 100)
     },
     deleteNumber () {
       const numbers = this.chiffre.split('')
@@ -86,11 +85,11 @@ export default {
 <style lang="scss" scoped>
 .display {
   font-size: 2rem;
-  height: 100px;
-  line-height: 100px;
+  height: 160px;
+  padding-top: 1.2rem;
 }
 .timer {
-  height: 30px;
+  font-size: 1rem;
   visibility: hidden;
 }
 .timer.is-visible {
@@ -100,7 +99,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 330px);
+  height: calc(100vh - 320px);
   .grid {
     display: grid;
     grid-template-columns: 70px 70px 70px;
@@ -120,9 +119,8 @@ export default {
   }
 }
 .start {
-  height: 200px;
-  line-height: 200px;
-  background-color: #fff;
+  height: 160px;
+  line-height: 160px;
   a {
     text-decoration: none;
   }
@@ -133,6 +131,7 @@ export default {
     background: rgb(94, 194, 119);
     color: #fff;
     padding: .5rem 1rem;
+    cursor: pointer;
   }
 }
 </style>
