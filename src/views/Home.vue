@@ -47,7 +47,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 300px);
     .grid {
       display: grid;
       grid-template-columns: 70px 70px 70px;
@@ -67,8 +67,8 @@ export default {
     }
   }
   .start {
-    height: 100px;
-    line-height: 100px;
+    height: 200px;
+    line-height: 200px;
     background-color: #fff;
     a {
       text-decoration: none;

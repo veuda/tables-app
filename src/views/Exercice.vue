@@ -9,7 +9,7 @@
     <div class="keyboard">
       <div>
         <div class="grid">
-          <span class="number" v-for="num in numbers" :key="num" @click="choseNumber(num)">{{ num }}</span>
+          <span class="number" :class="{ 'is-active' : isActive === num }" v-for="num in numbers" :key="num" @click="choseNumber(num)">{{ num }}</span>
           <span></span>
           <span class="number" @click="choseNumber(0)">0</span>
           <span class="number" @click="deleteNumber">R</span>
@@ -38,7 +38,8 @@ export default {
       chiffre: '',
       start: null,
       end: null,
-      timer: null
+      timer: null,
+      isActive: null
     }
   },
   methods: {
@@ -52,7 +53,11 @@ export default {
       }
     },
     choseNumber (number) {
+      this.isActive = number
       this.chiffre = this.chiffre + number.toString()
+      setTimeout(() => {
+        this.isActive = null
+      }, 100)
     },
     deleteNumber () {
       const numbers = this.chiffre.split('')
@@ -95,7 +100,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 230px);
+  height: calc(100vh - 330px);
   .grid {
     display: grid;
     grid-template-columns: 70px 70px 70px;
@@ -115,8 +120,8 @@ export default {
   }
 }
 .start {
-  height: 100px;
-  line-height: 100px;
+  height: 200px;
+  line-height: 200px;
   background-color: #fff;
   a {
     text-decoration: none;
