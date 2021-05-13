@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="countdown">
-      <div class="number green">{{ countDown }}</div>
+      <div class="number">{{ countDown }}</div>
     </div>
     <!-- <div class="start">
       <router-link :to="`/exercice/${this.number}`">
@@ -65,10 +65,7 @@ export default {
     height: 70px;
     border-radius: 50%;
     margin: 0 auto;
-  }
-  .green {
     border: 1px solid #000;
-    animation: fade 20.2s ease-in-out;
   }
 }
 .start {
@@ -86,47 +83,5 @@ export default {
     padding: 0.5rem 1rem;
     cursor: pointer;
   }
-}
-@keyframes fade {
-  0%    { opacity: 1; }
-  4.99%   { opacity: 0; }
-  5%    { opacity: 1; }
-  9.99%   { opacity: 0; }
-  10%   { opacity: 1; }
-  14.99%  { opacity: 0; }
-  15%   { opacity: 1; }
-  19.99%  { opacity: 0; }
-  20%   { opacity: 1; }
-  24.99%  { opacity: 0; }
-  25%   { opacity: 1; }
-  29.99%  { opacity: 0; }
-  30%   { opacity: 1; }
-  34.99%  { opacity: 0; }
-  35%   { opacity: 1; }
-  39.99%  { opacity: 0; }
-  40%   { opacity: 1; }
-  44.99%  { opacity: 0; }
-  45%   { opacity: 1; }
-  49.99%  { opacity: 0; }
-  50%   { opacity: 1; }
-  54.99%  { opacity: 0; }
-  55%   { opacity: 1; }
-  59.99%  { opacity: 0; }
-  60%   { opacity: 1; }
-  64.99%  { opacity: 0; }
-  65%   { opacity: 1; }
-  69.99%  { opacity: 0; }
-  70%   { opacity: 1; }
-  74.99%  { opacity: 0; }
-  75%   { opacity: 1; }
-  79.99%  { opacity: 0; }
-  80%   { opacity: 1; }
-  84.99%  { opacity: 0; }
-  85%   { opacity: 1; }
-  89.99%  { opacity: 0; }
-  90%   { opacity: 1; }
-  94.99%  { opacity: 0; }
-  95%   { opacity: 1; }
-  100%    { opacity: 0; }
 }
 </style>
