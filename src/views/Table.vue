@@ -68,7 +68,7 @@ export default {
   }
   .green {
     border: 1px solid #000;
-    animation: fade 20.1s ease-in-out;
+    animation: fade 20.2s ease-in-out;
   }
 }
 .start {
@@ -93,41 +93,40 @@ export default {
   5%    { opacity: 1; }
   9.99%   { opacity: 0; }
   10%   { opacity: 1; }
-  14.99%   { opacity: 0; }
+  14.99%  { opacity: 0; }
   15%   { opacity: 1; }
-  19.99%   { opacity: 0; }
+  19.99%  { opacity: 0; }
   20%   { opacity: 1; }
-  24.99%   { opacity: 0; }
+  24.99%  { opacity: 0; }
   25%   { opacity: 1; }
-  29.99%   { opacity: 0; }
+  29.99%  { opacity: 0; }
   30%   { opacity: 1; }
-  34.99%   { opacity: 0; }
+  34.99%  { opacity: 0; }
   35%   { opacity: 1; }
-  39.99%   { opacity: 0; }
+  39.99%  { opacity: 0; }
   40%   { opacity: 1; }
-  44.99%   { opacity: 0; }
+  44.99%  { opacity: 0; }
   45%   { opacity: 1; }
-  49.99%   { opacity: 0; }
+  49.99%  { opacity: 0; }
   50%   { opacity: 1; }
-  54.99%   { opacity: 0; }
+  54.99%  { opacity: 0; }
   55%   { opacity: 1; }
-  59.99%   { opacity: 0; }
+  59.99%  { opacity: 0; }
   60%   { opacity: 1; }
-  64.99%   { opacity: 0; }
+  64.99%  { opacity: 0; }
   65%   { opacity: 1; }
-  69.99%   { opacity: 0; }
+  69.99%  { opacity: 0; }
   70%   { opacity: 1; }
-  74.99%   { opacity: 0; }
+  74.99%  { opacity: 0; }
   75%   { opacity: 1; }
-  79.99%   { opacity: 0; }
+  79.99%  { opacity: 0; }
   80%   { opacity: 1; }
-  84.99%   { opacity: 0; }
+  84.99%  { opacity: 0; }
   85%   { opacity: 1; }
-  89.99%   { opacity: 0; }
+  89.99%  { opacity: 0; }
   90%   { opacity: 1; }
-  94.99%   { opacity: 0; }
+  94.99%  { opacity: 0; }
   95%   { opacity: 1; }
-  99.99%   { opacity: 0; }
-  100%  { opacity: 0; }
+  100%    { opacity: 0; }
 }
 </style>
