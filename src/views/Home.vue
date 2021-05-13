@@ -70,7 +70,6 @@ export default {
   .start {
     height: 160px;
     line-height: 160px;
-    background-color: #fff;
     a {
       text-decoration: none;
     }

@@ -2,26 +2,35 @@
   <div class="about">
     <div class="display">
       <div>
-        {{ this.number }} x {{ this.$route.params.id }} = {{ this.chiffre }}
+        {{ this.number }} x {{ this.$route.params.id }} = {{ this.result }}
       </div>
-      <div class="timer" :class="[ timer !== null ? 'is-visible' : '']">
+      <div class="wrapper">
+        <div class="answer-grid">
+          <div class="answer-slot" v-for="i in 9" :key="i"></div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="answer-grid">
+          <div class="answer" v-for="j in score" :key="j"></div>
+        </div>
+      </div>
+      <div class="timer" v-if="this.timer !== null">
         Temps : {{ convert(this.timer) }}
       </div>
     </div>
-
     <div class="keyboard">
       <div>
         <div class="grid">
-          <span class="number" v-for="num in numbers" :key="num" @click="choseNumber(num)">{{ num }}</span>
+          <span class="number" v-for="num in keyboardNumbers" :key="num" @click="choseNumber(num)">{{ num }}</span>
           <span></span>
           <span class="number" @click="choseNumber(0)">0</span>
-          <span class="number" @click="deleteNumber">R</span>
+          <span class="number" @click="deleteNumber">&larr;</span>
         </div>
       </div>
     </div>
     <div class="start">
       <button class="button" @click="next()" v-if="this.index < 8">SUIVANT</button>
-      <button class="button" @click="stop()" v-if="this.index === 8 && this.end === null">STOP</button>
+      <button class="button" @click="stop()" v-if="this.index === 8 && this.end === null">FIN</button>
       <router-link to="/" v-if="this.end !== null">
         <a class="button">NOUVELLE TABLE</a>
       </router-link>
@@ -34,11 +43,12 @@ export default {
   name: 'Exercice',
   data () {
     return {
-      numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      keyboardNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       shuffledNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       number: null,
       index: 0,
-      chiffre: '',
+      result: '',
+      score: null,
       start: null,
       end: null,
       timer: null
@@ -46,29 +56,36 @@ export default {
   },
   methods: {
     next () {
-      if (parseInt(this.chiffre) === this.number * this.$route.params.id) {
+      if (parseInt(this.result) === this.number * this.$route.params.id) {
         this.index += 1
+        this.score += 1
         this.number = this.shuffledNumbers[this.index]
-        this.chiffre = ''
+        this.result = ''
       } else {
-        this.chiffre = ''
+        this.result = ''
       }
     },
     choseNumber (number) {
-      this.isActive = number
-      this.chiffre = this.chiffre + number.toString()
+      if (this.timer !== null) return
+      this.result = this.result + number.toString()
     },
     deleteNumber () {
-      const numbers = this.chiffre.split('')
+      if (this.timer !== null) return
+      const numbers = this.result.split('')
       numbers.pop()
-      this.chiffre = numbers.join('')
+      this.result = numbers.join('')
     },
     stop () {
+      this.score += 1
       this.end = Date.now()
       this.timer = this.end - this.start
     },
     convert (timer) {
-      return (timer / 1000).toFixed(2) + ' s'
+      if (timer > 60000) {
+        return Math.floor(timer / 1000 / 60) + 'm' + Math.floor(timer / 1000 % 60) + 's'
+      } else {
+        return (timer / 1000).toFixed(2) + ' s'
+      }
     }
   },
   created () {
@@ -86,13 +103,32 @@ export default {
   font-size: 2rem;
   height: 160px;
   padding-top: 1.2rem;
-}
-.timer {
+  .timer {
   font-size: 1rem;
-  visibility: hidden;
-}
-.timer.is-visible {
-  visibility: visible;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(9, 10px);
+      gap: 1rem;
+      .answer-slot {
+        height: 10px;
+        width: 10px;
+        background: rgb(220, 220, 220);
+        border-radius: 50%;
+      }
+      .answer {
+        height: 10px;
+        width: 10px;
+        background: rgb(94, 194, 119);
+        border-radius: 50%;
+        margin-top: -18px;
+      }
+    }
+  }
 }
 .keyboard {
   display: flex;
@@ -109,11 +145,6 @@ export default {
       border: 1px solid #000;
       border-radius: 50%;
       cursor: pointer;
-    }
-    .number.is-active {
-      color: #fff;
-      background: rgb(94, 194, 119);
-      border: 1px solid rgb(94, 194, 119);
     }
   }
 }
