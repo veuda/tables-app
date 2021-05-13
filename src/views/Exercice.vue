@@ -30,7 +30,7 @@
     </div>
     <div class="start">
       <button class="button" @click="next()" v-if="this.index < 8">SUIVANT</button>
-      <button class="button" @click="stop()" v-if="this.index === 8 && this.end === null">FIN</button>
+      <button class="button" @click="stop()" v-if="this.index === 8 && this.end === null">STOP</button>
       <router-link to="/" v-if="this.end !== null">
         <a class="button">NOUVELLE TABLE</a>
       </router-link>
@@ -76,9 +76,11 @@ export default {
       this.result = numbers.join('')
     },
     stop () {
-      this.score += 1
-      this.end = Date.now()
-      this.timer = this.end - this.start
+      if (parseInt(this.result) === this.number * this.$route.params.id) {
+        this.score += 1
+        this.end = Date.now()
+        this.timer = this.end - this.start
+      }
     },
     convert (timer) {
       if (timer > 60000) {
