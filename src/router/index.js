@@ -13,12 +13,12 @@ const routes = [
   {
     path: '/table/:id',
     name: 'Table',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Table.vue')
+    component: () => import(/* webpackChunkName: "table" */ '../views/Table.vue')
   },
   {
     path: '/exercice/:id',
     name: 'Exercice',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Exercice.vue')
+    component: () => import(/* webpackChunkName: "exercice" */ '../views/Exercice.vue')
   }
 ]
 

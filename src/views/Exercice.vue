@@ -55,6 +55,21 @@ export default {
     }
   },
   methods: {
+    shuffle (array) {
+      let currentIndex = array.length
+      let temporaryValue = array.length
+      let randomIndex = array.length
+
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex -= 1
+
+        temporaryValue = array[currentIndex]
+        array[currentIndex] = array[randomIndex]
+        array[randomIndex] = temporaryValue
+      }
+      return array
+    },
     next () {
       if (parseInt(this.result) === this.number * this.$route.params.id) {
         this.index += 1
@@ -90,11 +105,9 @@ export default {
       }
     }
   },
-  created () {
-    this.shuffledNumbers = this.shuffledNumbers.sort((a, b) => 0.5 - Math.random())
-    this.number = this.shuffledNumbers[0]
-  },
   mounted () {
+    this.shuffledNumbers = this.shuffle(this.shuffledNumbers)
+    this.number = this.shuffledNumbers[0]
     this.start = Date.now()
   }
 }

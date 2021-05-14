@@ -38,10 +38,8 @@ export default {
       if (this.countDown === 0) this.$router.push(`/exercice/${this.number}`)
     }
   },
-  created () {
-    this.number = this.$route.params.id
-  },
   mounted () {
+    this.number = this.$route.params.id
     this.countDownTimer()
   }
 }
