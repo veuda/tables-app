@@ -6,7 +6,7 @@
     <div class="tables">
       <div>
         <div class="grid">
-          <span class="number" :class="[ number === num ? 'is-active' : '' ]" @click="choseNumber(num)" v-for="num in numbers" :key="num">{{ num }}</span>
+          <span class="number" :class="[ number === num ? 'is-active' : '' ]" @click="setNumber(num)" v-for="num in numbers" :key="num">{{ num }}</span>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    choseNumber (number) {
+    setNumber (number) {
       this.number = number
     }
   }
