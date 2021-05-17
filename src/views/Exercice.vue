@@ -14,16 +14,19 @@
           <div class="answer" v-for="j in score" :key="j"></div>
         </div>
       </div>
-      <div class="timer" v-if="this.timer !== null">
+      <div class="timer" v-if="this.timer !== null && this.timer > this.record">
         Temps : {{ convert(this.timer) }}
+      </div>
+      <div class="timer" v-if="this.timer !== null && this.timer < this.record">
+        Nouveau record : {{ convert(this.timer) }} !!!
       </div>
     </div>
     <div class="keyboard">
       <div>
         <div class="grid">
-          <span class="number" v-for="num in keyboardNumbers" :key="num" @click="choseNumber(num)">{{ num }}</span>
+          <span class="number" v-for="num in keyboardNumbers" :key="num" @click="setNumber(num)">{{ num }}</span>
           <span></span>
-          <span class="number" @click="choseNumber(0)">0</span>
+          <span class="number" @click="setNumber(0)">0</span>
           <span class="number" @click="deleteNumber">&larr;</span>
         </div>
       </div>
@@ -80,7 +83,7 @@ export default {
         this.result = ''
       }
     },
-    choseNumber (number) {
+    setNumber (number) {
       if (this.timer !== null) return
       this.result = this.result + number.toString()
     },
@@ -95,6 +98,9 @@ export default {
         this.score += 1
         this.end = Date.now()
         this.timer = this.end - this.start
+        if (this.timer < this.record) {
+          localStorage.setItem(`personal-best-${this.$route.params.id}`, this.timer)
+        }
       } else {
         this.result = ''
       }
@@ -110,6 +116,12 @@ export default {
   mounted () {
     this.shuffledNumbers = this.shuffle(this.shuffledNumbers)
     this.number = this.shuffledNumbers[0]
+    if (localStorage.getItem(`personal-best-${this.$route.params.id}`)) {
+      this.record = localStorage.getItem(`personal-best-${this.$route.params.id}`)
+    } else {
+      localStorage.setItem(`personal-best-${this.$route.params.id}`, 200000)
+    }
+    this.record = localStorage.getItem(`personal-best-${this.$route.params.id}`)
     this.start = Date.now()
   }
 }
