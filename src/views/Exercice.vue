@@ -99,6 +99,9 @@ export default {
         this.score += 1
         this.end = Date.now()
         this.timer = this.end - this.start
+        if (this.timer < this.record) {
+          localStorage.setItem(`personal-best-${this.$route.params.id}`, this.timer)
+        }
       } else {
         this.result = ''
       }
@@ -114,6 +117,12 @@ export default {
   mounted () {
     this.shuffledNumbers = this.shuffle(this.shuffledNumbers)
     this.number = this.shuffledNumbers[0]
+    if (localStorage.getItem(`personal-best-${this.$route.params.id}`)) {
+      this.record = localStorage.getItem(`personal-best-${this.$route.params.id}`)
+    } else {
+      localStorage.setItem(`personal-best-${this.$route.params.id}`, 200000)
+    }
+    this.record = localStorage.getItem(`personal-best-${this.$route.params.id}`)
     this.start = Date.now()
   }
 }
