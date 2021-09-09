@@ -6,7 +6,7 @@
     <div class="tables">
       <div>
         <div class="grid">
-          <span class="number" :class="[ number === num ? 'is-active' : '' ]" @click="choseNumber(num)" v-for="num in numbers" :key="num">{{ num }}</span>
+          <span class="number" :class="{ 'is-active' : number === num }" @click="choseNumber(num)" v-for="num in numbers" :key="num">{{ num }}</span>
         </div>
       </div>
     </div>

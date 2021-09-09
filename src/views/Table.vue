@@ -8,13 +8,8 @@
       </div>
     </div>
     <div class="countdown">
-      <div class="number">{{ countDown }}</div>
+      <div class="number" @click="start">{{ countDown }}</div>
     </div>
-    <!-- <div class="start">
-      <router-link :to="`/exercice/${this.number}`">
-        <a class="button">COMMENCER</a>
-      </router-link>
-    </div> -->
   </div>
 </template>
 
@@ -36,6 +31,11 @@ export default {
         }, 1000)
       }
       if (this.countDown === 0) this.$router.push(`/exercice/${this.number}`)
+    },
+
+    start () {
+      this.countDown = 0
+      this.$router.push(`/exercice/${this.number}`)
     }
   },
   mounted () {
@@ -57,6 +57,7 @@ export default {
   height: 160px;
   padding-top: 15px;
   .number {
+    cursor: pointer;
     font-size: 2rem;
     line-height: 70px;
     width: 70px;
