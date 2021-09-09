@@ -99,6 +99,8 @@ export default {
         this.score += 1
         this.end = Date.now()
         this.timer = this.end - this.start
+      } else {
+        this.result = ''
       }
     },
     convert (timer) {
